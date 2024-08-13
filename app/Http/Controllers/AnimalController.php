@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AnimalRequest;
 use App\Models\Animal;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Symfony\Component\HttpFoundation\Response as Status;
@@ -21,7 +22,7 @@ class AnimalController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index():void
     {
         //
     }
@@ -29,7 +30,7 @@ class AnimalController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create():void
     {
         //
     }
@@ -37,7 +38,7 @@ class AnimalController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(AnimalRequest $request)
+    public function store(AnimalRequest $request):JsonResponse
     {
         $animals = $request->validated();
         $this->animal->create($animals);
