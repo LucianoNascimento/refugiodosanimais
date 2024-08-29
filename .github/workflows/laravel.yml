@@ -16,10 +16,12 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.2'
-      - name: Copy .env
-        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+      - name: Install Composer
+        run: sudo apt-get install -y composer
       - name: Install Dependencies
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+      - name: Copy .env
+        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
       - name: Generate key
         run: php artisan key:generate
       - name: Clear Config Cache
@@ -34,5 +36,5 @@ jobs:
         env:
           DB_CONNECTION: sqlite
           DB_DATABASE: database/database.sqlite
-          APP_KEY: base64:Em92a4ITRVTk8VGBIoA/SL2zH2jFCtwD4L2smaecmxY=
+          APP_KEY: ${{ secrets.APP_KEY }}
         run: php artisan test
