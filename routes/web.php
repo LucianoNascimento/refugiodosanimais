@@ -17,4 +17,4 @@ use App\Http\Controllers\AnimalController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::post('/animais', [AnimalController::class, 'store'])->name('cadastrar_animal');
+
